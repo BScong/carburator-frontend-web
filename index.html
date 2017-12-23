@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
     <style>
       html { height: 100% }
       body { height: 100%; margin: 0px; padding: 0px }
@@ -34,14 +35,52 @@
       function populateMap(map){
         $.getJSON('http://127.0.0.1:3000/stations', function(data){
           console.log(data);
+          var markers = [];
+          var infowindow = new google.maps.InfoWindow({
+              content: 'Chargement...'
+            })
           for(var i = 0; i<data.length;i++){
             //console.log(data[i].lonlat[0])
+            var prices = '<ul>'
+            for(key in data[i].prices){
+              prices += '<li>'+data[i].prices[key].name + ' : <b>' + data[i].prices[key].value + " €</b></li>"
+            }
+            prices+='</ul>'
+
+            var services = '<ul>'
+            for(var j=0; j<data[i].services.length;j++){
+              services += '<li>'+data[i].services[j]+"</li>"
+            }
+            services+='</ul>'
+
+            var contentString = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            //'<h1 id="firstHeading" class="firstHeading">'+data[i].address + ", " + data[i].postcode + " " + data[i].city+'</h1>'+
+            '<div id="bodyContent">'+
+            '<h2>Adresse</h2>'+
+            '<p>'+data[i].address + ",<br />"+ data[i].postcode + " " + data[i].city+'</p>'+
+            '<h2>Horaires</h2><ul><li>Ouverture : '+data[i].hours.open+'</li>'+
+            '<li>Fermeture : '+data[i].hours.close+'</li></ul>'+
+            '<h2> Prix </h2>'+ prices +
+            '<h2> Services </h2>'+ services +
+            //'<p> Données au ' + Date.parse(data[i].last_modified) + '</p>'+
+            '</div>'+
+            '</div>';
+
             var marker = new google.maps.Marker({
               position: {lat:parseFloat(data[i].lonlat[1]),lng:parseFloat(data[i].lonlat[0])},
               map: map,
-              title: data[i].address + ", " + data[i].postcode + " " + data[i].city
+              title: data[i].address + ", " + data[i].postcode + " " + data[i].city,
+              html: contentString
             });
 
+            markers.push(marker);
+
+            google.maps.event.addListener(marker, 'click', function () {
+              infowindow.setContent(this.html);
+              infowindow.open(map, this);
+            });
           }
 
         });
