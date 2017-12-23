@@ -47,11 +47,25 @@
             }
             prices+='</ul>'
 
-            var services = '<ul>'
-            for(var j=0; j<data[i].services.length;j++){
-              services += '<li>'+data[i].services[j]+"</li>"
+            var services = ''
+            if (data[i].services.length>0){
+              services = '<h2> Services </h2><ul>'
+              for(var j=0; j<data[i].services.length;j++){
+                services += '<li>'+data[i].services[j]+"</li>"
+              }
+              services+='</ul>'
             }
-            services+='</ul>'
+
+            var times = '';
+            if (data[i].hours.open != data[i].hours.close){
+              times = '<h2>Horaires</h2><ul><li>Ouverture : '+data[i].hours.open+'</li>'+
+              '<li>Fermeture : '+data[i].hours.close+'</li>'
+              if (data[i].hours.except!="")
+                times += '<li>Fermé ' + data[i].hours.except+'</li>'
+              times+='</ul>'
+            }
+            
+
 
             var contentString = '<div id="content">'+
             '<div id="siteNotice">'+
@@ -60,10 +74,9 @@
             '<div id="bodyContent">'+
             '<h2>Adresse</h2>'+
             '<p>'+data[i].address + ",<br />"+ data[i].postcode + " " + data[i].city+'</p>'+
-            '<h2>Horaires</h2><ul><li>Ouverture : '+data[i].hours.open+'</li>'+
-            '<li>Fermeture : '+data[i].hours.close+'</li></ul>'+
+            times+
             '<h2> Prix </h2>'+ prices +
-            '<h2> Services </h2>'+ services +
+            services +
             //'<p> Données au ' + Date.parse(data[i].last_modified) + '</p>'+
             '</div>'+
             '</div>';
