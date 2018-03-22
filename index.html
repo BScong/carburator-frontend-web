@@ -63,7 +63,7 @@
                 times += '<li>Fermé ' + data[i].hours.except+'</li>'
               times+='</ul>'
             }
-            
+
 
 
             var contentString = '<div id="content">'+
@@ -76,7 +76,7 @@
             times+
             '<h2> Prix </h2>'+ prices +
             services +
-            //'<p> Données au ' + Date.parse(data[i].last_modified) + '</p>'+
+            '<p> Données au ' + new Date(data[i].last_modified) + '</p>'+
             '</div>'+
             '</div>';
 
