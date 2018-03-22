@@ -5,7 +5,39 @@ function initMap(map) {
 		zoom: 10,
 		center: paris
 	});
+	initAutocomplete(map);
 	populateMap(map);
+}
+
+function initAutocomplete(map){
+	// Create the search box and link it to the UI element.
+	var input = document.getElementById('search');
+	var searchBox = new google.maps.places.SearchBox(input);
+
+	// Bias the SearchBox results towards current map's viewport.
+	map.addListener('bounds_changed', function() {
+		searchBox.setBounds(map.getBounds());
+	});
+
+	searchBox.addListener('places_changed', function() {
+		var places = searchBox.getPlaces();
+
+		if (places.length == 0) {
+			return;
+		}
+
+		var bounds = new google.maps.LatLngBounds();
+
+		places.forEach(function(place) {
+			if (place.geometry.viewport) {
+				// Only geocodes have viewport.
+				bounds.union(place.geometry.viewport);
+			} else {
+				bounds.extend(place.geometry.location);
+			}
+		});
+		map.fitBounds(bounds);
+	});
 }
 
 function populateMap(map){
