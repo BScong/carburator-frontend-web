@@ -1,66 +1,65 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Carburator</title>
-    <meta charset="UTF-8">
-    <style>
-      html { height: 100% }
-      body { height: 100%; margin: 0px; padding: 0px }
-      #container { width: 100%; height: 100% }
-      #nav { z-index: 100; position: absolute;
-             margin: 10px 0px 0px 200px;
-           }
-      #map { width: 100%; height: 100% }
-    </style>
-    <link rel="stylesheet" type="text/css" href="./pace.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  </head>
-  <body>
+<head>
+  <title>Carburator</title>
+  <meta charset="UTF-8">
+  <style>
+    html { height: 100%;}
+    body { height: 100%; margin: 0px; padding: 0px;}
+    #container { width: 100%; height: 100%;}
+    #nav { z-index: 100; position: absolute; margin: 10px 0px 0px 200px;}
+    #map { width: 100%; height: 100%;}
+  </style>
+  <link rel="stylesheet" type="text/css" href="./pace.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
 
-    <!-- Modal -->
-    <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="infoModalLabel">Carburator</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Find gas stations.
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
+  <!-- Modal -->
+  <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="infoModalLabel">Carburator</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Find gas stations.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
+  </div>
 
-    <div id="container">
-      <div id="nav" class="form-inline">
-          <div class="form-group mb-2 mr-sm-3">
-              <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#infoModal">
-                <i class="material-icons" style="vertical-align: middle;">info_outline</i>
-              </button>
-          </div>
-          <div class="form-group mb-2 mr-sm-3">
-            <label class="sr-only" for="search">Search</label>
-            <input type="text" class="form-control" id="search" placeholder="Search Box" aria-label="Location">
-          </div>
+  <div id="container">
+    <div id="nav" class="form-inline">
+      <div class="form-group mb-2 mr-sm-3">
+        <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#infoModal">
+          <i class="material-icons" style="vertical-align: middle;">info_outline</i>
+        </button>
       </div>
-      <div id="map"></div>
+      <div class="form-group mb-2 mr-sm-3">
+        <label class="sr-only" for="search">Search</label>
+        <input type="text" class="form-control" id="search" placeholder="Search Box" aria-label="Location">
+      </div>
     </div>
-    <script src="./pace.js"></script>
-    <script type='text/javascript' src='./config.js'></script>
-    <script src="./loadGoogleMaps.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script async defer>
-        $.getScript("https://maps.googleapis.com/maps/api/js?key="+ config.MAPS_API_KEY + "&libraries=places&callback=initMap",function(data, status,jqxhr){})
-    </script>
-  </body>
+    <div id="map"></div>
+  </div>
+
+  <script src="./pace.js"></script>
+  <script type='text/javascript' src='./config.js'></script>
+  <script src="./loadGoogleMaps.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script async defer>
+  $.getScript("https://maps.googleapis.com/maps/api/js?key="+ config.MAPS_API_KEY + "&libraries=places&callback=initMap",function(data, status,jqxhr){})
+  </script>
+</body>
 </html>
