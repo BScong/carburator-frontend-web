@@ -7,8 +7,8 @@
       html { height: 100% }
       body { height: 100%; margin: 0px; padding: 0px }
       #container { width: 100%; height: 100% }
-      #nav { z-index: 100; position: absolute; 
-             margin: 10px 0px 0px 200px; background-color: #fff; 
+      #nav { z-index: 100; position: absolute;
+             margin: 10px 0px 0px 200px; background-color: #fff;
              border: 1px #000 Solid; padding: 5px; }
       #map { width: 100%; height: 100% }
     </style>
@@ -94,12 +94,15 @@
               infowindow.open(map, this);
             });
           }
-
+          var markerCluster = new MarkerClusterer(map, markers,
+              {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
         });
       }
     </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
     </script>
     <script async defer src="./loadGoogleMaps.js">
     </script>
